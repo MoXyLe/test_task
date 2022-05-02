@@ -33,11 +33,11 @@ async def get_questions(question_id: Optional[int] = None, db: Session = Depends
         question = crud.get_question(db=db, id=int(question_id))
         if question:
             return question
-        raise HTTPException(status_code=400, detail="Question with specified id not found")
+        return None
     all_questions = crud.get_question(db=db)
     if all_questions:
         return all_questions
-    raise HTTPException(status_code=400, detail="Question with specified id not found")
+    return None
 
 
 def get_new_questions(question_num: int, db: Session):
